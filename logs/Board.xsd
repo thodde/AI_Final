@@ -1,0 +1,98 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="Player">
+  <xs:complexType>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="x" type="xs:int" use="required"/>
+    <xs:attribute name="y" type="xs:int" use="required"/>
+    <xs:attribute name="AIModel" type="xs:string" use="required"/>
+  </xs:complexType>
+</xs:element>
+<xs:element name="RedGhost">
+  <xs:complexType>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="x" type="xs:int" use="required"/>
+    <xs:attribute name="y" type="xs:int" use="required"/>
+    <xs:attribute name="AIModel" type="xs:string" use="required"/>
+  </xs:complexType>
+</xs:element>
+<xs:element name="BlueGhost">
+  <xs:complexType>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="x" type="xs:int" use="required"/>
+    <xs:attribute name="y" type="xs:int" use="required"/>
+    <xs:attribute name="AIModel" type="xs:string" use="required"/>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="Background">
+  <xs:complexType>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="x" type="xs:int" use="required"/>
+    <xs:attribute name="y" type="xs:int" use="required"/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Backgrounds">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="Background" maxOccurs="unbounded" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Token">
+  <xs:complexType>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="x" type="xs:int" use="required"/>
+    <xs:attribute name="y" type="xs:int" use="required"/>
+    <xs:attribute type="xs:byte" name="pointValue" use="required"/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Tokens">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="Token" maxOccurs="unbounded" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Board">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="Backgrounds" maxOccurs="1" minOccurs="0" />
+      <xs:element ref="Tokens" maxOccurs="1" minOccurs="0" />
+    </xs:sequence>
+    <xs:attribute name="height" type="xs:int" use="required"/>
+    <xs:attribute name="width" type="xs:int" use="required"/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Model">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="Player" maxOccurs="1" minOccurs="1" />
+      <xs:element ref="RedGhost" maxOccurs="1" minOccurs="0" />
+      <xs:element ref="BlueGhost" maxOccurs="1" minOccurs="0" />
+      <xs:element ref="Board" maxOccurs="1" minOccurs="1" />
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="automatePlayer"/>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="Game">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="Model" maxOccurs="1" minOccurs="1" />
+    </xs:sequence>
+    <xs:attribute type="xs:boolean" name="automatePlayer"/>
+    <xs:attribute type="xs:boolean" name="deterministic"/>
+    <xs:attribute type="xs:boolean" name="visible"/>
+    <xs:attribute type="xs:boolean" name="informationZones"/>
+    <xs:attribute type="xs:boolean" name="ghostKills"/>
+  </xs:complexType>
+</xs:element>
+
+
+</xs:schema>
